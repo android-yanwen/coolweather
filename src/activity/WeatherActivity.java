@@ -1,5 +1,6 @@
 package activity;
 
+import service.AutoUpdateService;
 import util.HttpUtil;
 import util.HttpUtil.HttpCallbackListener;
 import util.Utility;
@@ -19,7 +20,6 @@ import android.widget.TextView;
 import com.coolweather.coolweather.R;
 
 public class WeatherActivity extends Activity implements OnClickListener{
-	
 	private LinearLayout weatherInfoLayout;
 	/**
 	 * 用于显示城市名
@@ -154,6 +154,9 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		currentDateText.setText(prefs.getString("current_date", ""));
 		weatherInfoLayout.setVisibility(View.VISIBLE);
 		cityNameText.setVisibility(View.VISIBLE);
+		
+		Intent i = new Intent(this, AutoUpdateService.class);
+		this.startService(i);
 	}
 	
 	@Override
